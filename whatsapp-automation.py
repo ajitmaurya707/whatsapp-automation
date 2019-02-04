@@ -5,13 +5,18 @@ import time
 import requests
 from selenium.webdriver.support.ui import WebDriverWait
 
-URL = "https://branding500mg.com/whatsappapi/whatsappclass/getwhatsapp.php"
+URL = "https://example.com/yourdataurl.php"
+'''
+Data json example
+[{'id': '12', '_user_id': '13', '_from': 'xxxxxxxxxx', '_to': 'xxxxxxxxxx', '_message': 'Whatsapp-automation A bulk whatsapp messaging app', '_apikey': 'NWM1MTc2N2UxYWY3Zg==', 'is_sent': '0'}, {'id': '11', '_user_id': '13', '_from': 'xxxxxxxxxx', '_to': 'xxxxxxxxxx', '_message': 'Whatsapp-automation A bulk whatsapp messaging app', '_apikey': 'NWM1MTc2N2UxYWY3Zg==', 'is_sent': '0'}, {'id': '10', '_user_id': '11', '_from': 'xxxxxxxxxx', '_to': '8126458906', '_message': 'Whatsapp-automation A bulk whatsapp messaging app', '_apikey': 'NWM1MDRhNWEwZjZkOA==', 'is_sent': '0'}, {'id': '13', '_user_id': '13', '_from': 'xxxxxxxxxx', '_to': '9717746592', '_message': 'Whatsapp-automation A bulk whatsapp messaging app', '_apikey': 'NWM1MTc2N2UxYWY3Zg==', 'is_sent': '0'}, {'id': '14', '_user_id': '13', '_from': 'xxxxxxxxxx', '_to': '9555061457', '_message': 'Whatsapp-automation A bulk whatsapp messaging app', '_apikey': 'NWM1MTc2N2UxYWY3Zg==', 'is_sent': '0'}, {'id': '15', '_user_id': '11', '_from': 'xxxxxxxxxx', '_to': '9990377643', '_message': 'Whatsapp-automation A bulk whatsapp messaging app', '_apikey': 'NWM1MDRhNWEwZjZkOA==', 'is_sent': '0'}]
+You can change data format as you want
+'''
 PARAMS = {}
 r = requests.get(url=URL, params=PARAMS)
 
 # extracting data in json format
 data = r.json()
-print(data)
+#input number from which you want to send whatsapp message
 phone = input("phone: ")
 client = requests.Session()
 #client.headers.update({'Connection': 'Keep-Alive'})
@@ -21,7 +26,6 @@ chrome_options.add_argument(f"user-data-dir=C:/Users/Grid/Desktop/whatsapp/sessi
 driver = webdriver.Chrome(r'C:\chromeDriver\chromedriver.exe', chrome_options=chrome_options)
 count = 0
 for i in data:
-    print(i['_to'])
     driver.get(f"https://web.whatsapp.com/send?phone=91{i['_to']}")
     if count >= 1:
         alert = driver.switch_to.alert
