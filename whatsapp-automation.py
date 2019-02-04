@@ -22,6 +22,7 @@ client = requests.Session()
 #client.headers.update({'Connection': 'Keep-Alive'})
 chrome_options = Options()
 chrome_options.add_argument("--disable-notifications")
+#Change user-data-dir path with your local path, where you want to save session
 chrome_options.add_argument(f"user-data-dir=C:/Users/Grid/Desktop/whatsapp/sessions/91{phone}/")
 driver = webdriver.Chrome(r'C:\chromeDriver\chromedriver.exe', chrome_options=chrome_options)
 count = 0
